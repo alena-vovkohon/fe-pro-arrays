@@ -35,11 +35,9 @@ const callbackMap = function (item, index, array) {
 }
 
 function map(array, callback) {
-  let callBack 
   let arrNew = []
   for (let i = 0; i < array.length; i += 1) {
-    callBack = callback(array[i], i, array)
-    arrNew.push(callBack)
+    arrNew.push(callback(array[i], i, array))
   }
   return arrNew
 
@@ -56,16 +54,17 @@ console.log(map(array, callbackMap))
 console.log('filter')
 
 const callbackFilter = function (item, index, array) {
-    return item
+  if (item > 1) {
+    return true
+  }
+  return false
 }
 
 function filter(array, callback) {
-  let callBack
   let arrNew = []
   for (let i = 0; i < array.length; i += 1) {
-    callBack = callback(array[i], i, array)
-    if (callBack > 1) {
-      arrNew.push(callBack)
+    if (callback(array[i], i, array) === true) {
+      arrNew.push(array[i])
     }
   }
   return arrNew
