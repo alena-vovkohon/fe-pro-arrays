@@ -82,18 +82,16 @@ console.log(filter(array, callbackFilter))
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 console.log('reduce')
-
-const callbackReduce = function (item, index, array) {
-  return item
+const callbackReduce = function (initialValue, item, index, array) {
+  return initialValue + item
 }
 
 function reduce(array, callback, initialValue) {
-  let callBack
+  let sum = initialValue
   for (let i = 0; i < array.length; i += 1) {
-    callBack = callback(array[i], i, array)
-    initialValue += callBack
+    sum = callback(sum, array[i], i, array)
   }
-  return initialValue
+  return sum
 }
 console.log(reduce(array, callbackReduce, 0))
 
