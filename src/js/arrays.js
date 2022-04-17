@@ -103,21 +103,21 @@ console.log(reduce(array, callbackReduce, 0))
 */
 
 console.log('some')
-
-const callbackSome= function (item, index, array) {
-  return item
+const callbackSome = function (item, index, array) {
+  if (item > 2) {
+    return true
+  }
+  return false
 }
 
 function some(array, callback) {
-  let callBack
-  
+
   for (let i = 0; i < array.length; i += 1) {
-    callBack = callback(array[i], i, array)
-    if (callBack >2) {
+    if (callback(array[i], i, array) === true) {
       return true
     }
   }
-  
+
   return false
 }
 console.log(some(array, callbackSome))
@@ -132,14 +132,15 @@ console.log(some(array, callbackSome))
 console.log('every')
 
 let callbackEvery = function (item, index, array) {
-  return item
+  if (item > 2) {
+    return true
+  }
+  return false
 }
 
 function every(array, callback) {
-  let callBack
   for (let i = 0; i < array.length; i += 1) {
-    callBack = callback(array[i], i, array)
-    if (callBack > 2) {
+    if (callback(array[i], i, array) === false) {
       return false
     }
   }
